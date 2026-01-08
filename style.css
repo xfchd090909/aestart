@@ -1,0 +1,124 @@
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-main: #ffffff;
+    --text-sub: #a0a0a0;
+    --accent: #3498db;
+    --hover-bg: #383838;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 顶部搜索栏 */
+header {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    background: var(--card-bg);
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.search-icon { color: var(--text-sub); margin-right: 10px; }
+
+input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
+#clock {
+    font-size: 24px;
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 主体网格布局 */
+main {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 响应式布局 */
+    gap: 25px;
+    box-sizing: border-box;
+}
+
+/* 分类卡片 */
+.category-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+
+.category-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--accent);
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.category-title i { margin-right: 8px; }
+
+/* 链接列表 */
+.link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.link-item {
+    text-decoration: none;
+    color: var(--text-sub);
+    background: rgba(255,255,255,0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s;
+    flex-grow: 1; /* 让标签填满空间 */
+    text-align: center;
+}
+
+.link-item:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: #555;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    header { flex-direction: column; gap: 20px; }
+    .search-box { width: 100%; }
+}
