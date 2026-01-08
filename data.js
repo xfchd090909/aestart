@@ -4,25 +4,16 @@ const navData = [
         categories: [
             {
                 title: "资讯",
-                icon: "ri-terminal-box-line",
+                icon: "ri-cup-line",
                 links: [
                     { name: "爱分享", url: "https://aeafx.netlify.app" },
                     { name: "爱分享(English)", url: "https://aeafxen.netlify.app" }
                 ]
             },
-            {
-                title: "日常办公",
-                icon: "ri-cup-line",
-                links: [
-                    { name: "ChatGPT", url: "https://chat.openai.com" },
-                    { name: "Notion", url: "https://notion.so" },
-                    { name: "Gmail", url: "https://gmail.com" }
-                ]
-            }
         ]
     },
     {
-        areaName: "LIFE 生活娱乐专区",
+        areaName: "站外专区",
         categories: [
             {
                 title: "内容消费",
