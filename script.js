@@ -34,7 +34,7 @@ function renderNav() {
 document.getElementById('search-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         const query = e.target.value;
-        if (query) window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        if (query) window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
     }
 });
 
