@@ -1,38 +1,50 @@
+// 渲染主函数
 function renderNav() {
     const container = document.getElementById('app');
-    container.innerHTML = ''; // 清空容器
-
+    
     navData.forEach(area => {
-        // 1. 创建并添加分隔线
+        // 生成专区分隔线
         const divider = document.createElement('div');
         divider.className = 'area-divider';
         divider.innerHTML = `<h2>${area.areaName}</h2>`;
         container.appendChild(divider);
 
-        // 2. 创建该专区下的所有卡片
+        // 生成专区下的卡片
         area.categories.forEach(category => {
             const card = document.createElement('div');
             card.className = 'category-card';
             
-            const titleHTML = `
+            let linksHTML = category.links.map(link => `
+                <a href="${link.url}" target="_blank" class="link-item">${link.name}</a>
+            `).join('');
+
+            card.innerHTML = `
                 <div class="category-title">
                     <i class="${category.icon}"></i>
                     <span>${category.title}</span>
                 </div>
+                <div class="link-list">${linksHTML}</div>
             `;
-            
-            let linksHTML = '<div class="link-list">';
-            category.links.forEach(link => {
-                linksHTML += `
-                    <a href="${link.url}" target="_blank" class="link-item" title="${link.desc}">
-                        ${link.name}
-                    </a>
-                `;
-            });
-            linksHTML += '</div>';
-            
-            card.innerHTML = titleHTML + linksHTML;
             container.appendChild(card);
         });
     });
 }
+
+// 搜索逻辑
+document.getElementById('search-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const query = e.target.value;
+        if (query) window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    }
+});
+
+// 时钟逻辑
+function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
+}
+
+// 初始化执行
+renderNav();
+setInterval(updateClock, 1000);
+updateClock();
