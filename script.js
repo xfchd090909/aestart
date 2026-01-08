@@ -49,26 +49,32 @@ renderNav();
 setInterval(updateClock, 1000);
 updateClock();
 
-const modalHTML = `
-<div id="disclaimer-modal" class="modal-mask">
-    <div class="modal-content" id="modal-content">
-        <div class="modal-title">境外网络免责声明</div>
-        <div class="modal-body">
-            <p style="font-size: 1.1rem; color: #eee; margin-bottom: 10px;"><strong>法律合规告知书</strong></p>
-            <p>1. 本站作为静态导航页面，仅提供互联网公开链接的索引。所有链接均指向第三方平台。</p>
-            <p>2. <strong>合规访问：</strong> 用户在访问境外网站时，须遵守《中国计算机信息网络国际联网管理暂行规定》等相关法律，不得从事危害国家安全、泄露国家秘密等活动。</p>
-            <p>3. <strong>自备环境：</strong> 本站不提供、不分发、不推介任何翻墙软件或代理技术。用户需自行确保访问行为的合法性与合规性。</p>
-            <p>4. <strong>风险自担：</strong> 点击“我已阅读并同意”即表示您已阅读并理解上述内容，因个人访问行为产生的一切法律后果由用户自行承担。</p>
-        </div>
-        <button id="modal-confirm-btn" class="modal-btn" disabled>请阅读声明 (5s)</button>
+document.body.insertAdjacentHTML('beforeend', `
+    <div id="popup-mask" class="popup-mask"></div>
+    <div id="detail-popup" class="detail-popup">
+        <div id="popup-title" class="popup-title"></div>
+        <div id="popup-desc" class="popup-desc"></div>
+        <a id="popup-link" href="#" target="_blank" class="go-btn">进入网站</a>
     </div>
-</div>`;
-document.body.insertAdjacentHTML('beforeend', modalHTML);
+    <div id="disclaimer-modal" class="modal-mask">
+        <div class="modal-content" id="modal-content">
+            <h2 style="color:var(--accent); text-align:center;">境外网络免责声明</h2>
+            <div style="font-size:0.85rem; color:#b0b0b0; line-height:1.7; margin:20px 0;">
+                <p>1. 本站仅提供公开链接索引，不提供任何越障工具。</p>
+                <p>2. 用户须自觉遵守当地法律法规，严禁浏览违法违规内容。</p>
+                <p>3. 访问行为产生的法律责任由用户个人完全承担。</p>
+            </div>
+            <button id="modal-confirm-btn" class="modal-btn" style="width:100%; padding:12px; border:none; border-radius:8px; background:var(--accent-grad); color:white; font-weight:bold; cursor:pointer;" disabled>请阅读声明 (5s)</button>
+        </div>
+    </div>
+`);
 
-// 2. 修改渲染逻辑，传递点击事件对象 e
+const mask = document.getElementById('popup-mask');
+const popup = document.getElementById('detail-popup');
+
 function renderNav() {
     const container = document.getElementById('app');
-    container.innerHTML = ''; // 清空防止重复渲染
+    container.innerHTML = '';
 
     navData.forEach(area => {
         const divider = document.createElement('div');
@@ -80,27 +86,19 @@ function renderNav() {
             const card = document.createElement('div');
             card.className = 'category-card';
             
-            // 按钮增加描述文字层
             let linksHTML = category.links.map(link => `
-                <a href="${link.url}" target="_blank" class="link-item">
-                    <span class="link-name">${link.name}</span>
-                    <span class="link-desc">${link.desc || '点击访问网站'}</span>
-                </a>
+                <div class="link-item" onclick="openQuickView(event, '${link.name}', '${link.desc || '点击下方按钮访问该站点详细内容'}', '${link.url}')">
+                    ${link.name}
+                </div>
             `).join('');
 
             card.innerHTML = `
-                <div class="category-title">
-                    <i class="${category.icon}"></i>
-                    <span>${category.title}</span>
-                </div>
+                <div class="category-title"><i class="${category.icon}"></i><span>${category.title}</span></div>
                 <div class="link-list-container" style="position:relative;">
                     <div class="link-list">${linksHTML}</div>
                     ${category.title === "境外专区" ? 
                     `<div id="mosaic" class="mosaic-overlay">
-                        <button class="link-item show-btn" onclick="showDisclaimerWithAnimation(event)" style="cursor:pointer; background:var(--accent); color:white; border:none; z-index:11;">
-                            <span>显示内容</span>
-                            <span class="link-desc">查看境外专区链接</span>
-                        </button>
+                        <button class="link-item" onclick="showDisclaimer(event)" style="background:var(--accent); color:white;">显示内容</button>
                     </div>` : ''}
                 </div>
             `;
@@ -109,51 +107,56 @@ function renderNav() {
     });
 }
 
-// 2. 改进弹窗动画逻辑：强制坐标精确计算
-function showDisclaimerWithAnimation(e) {
+// 按钮原点弹出逻辑
+function openQuickView(e, name, desc, url) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+    
+    // 设置定位和动画原点
+    popup.style.left = `${Math.min(window.innerWidth - 300, Math.max(20, originX - 140))}px`;
+    popup.style.top = `${originY - 100}px`;
+    popup.style.transformOrigin = `center`;
+
+    document.getElementById('popup-title').textContent = name;
+    document.getElementById('popup-desc').textContent = desc;
+    document.getElementById('popup-link').href = url;
+
+    mask.style.display = 'block';
+    setTimeout(() => popup.classList.add('active'), 10);
+}
+
+mask.onclick = () => {
+    popup.classList.remove('active');
+    setTimeout(() => mask.style.display = 'none', 400);
+};
+
+// 境外专区逻辑
+function showDisclaimer(e) {
     const modal = document.getElementById('disclaimer-modal');
     const content = document.getElementById('modal-content');
     const btn = document.getElementById('modal-confirm-btn');
 
-    // 获取点击按钮的确切中心位置
     const rect = e.currentTarget.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
+    content.style.transformOrigin = `${rect.left + rect.width/2}px ${rect.top + rect.height/2}px`;
 
-    // 设置动画起始原点
-    content.style.transformOrigin = `${originX}px ${originY}px`;
-
-    // 触发显示
     modal.style.display = 'flex';
-    // 使用 requestAnimationFrame 确保 display:flex 已生效后再添加类名，触发动画
-    requestAnimationFrame(() => {
-        modal.classList.add('show');
-    });
+    setTimeout(() => modal.classList.add('show'), 10);
 
     let timeLeft = 5;
     btn.disabled = true;
     const timer = setInterval(() => {
         timeLeft--;
-        if (timeLeft > 0) {
-            btn.textContent = `请阅读声明 (${timeLeft}s)`;
-        } else {
-            clearInterval(timer);
-            btn.disabled = false;
-            btn.textContent = "我已阅读并同意";
-        }
+        btn.textContent = timeLeft > 0 ? `请阅读声明 (${timeLeft}s)` : "我已阅读并同意";
+        if (timeLeft <= 0) { clearInterval(timer); btn.disabled = false; }
     }, 1000);
 
     btn.onclick = () => {
         modal.classList.remove('show');
         setTimeout(() => { 
             modal.style.display = 'none';
-            // 移除遮罩
-            const mosaic = document.getElementById('mosaic');
-            if (mosaic) {
-                mosaic.style.transform = 'scale(1.2)';
-                mosaic.style.opacity = '0';
-                setTimeout(() => mosaic.remove(), 400);
-            }
-        }, 400); 
+            document.getElementById('mosaic').style.opacity = '0';
+            setTimeout(() => document.getElementById('mosaic').remove(), 500);
+        }, 400);
     };
 }
