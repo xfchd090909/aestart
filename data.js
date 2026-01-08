@@ -16,8 +16,7 @@ const navData = [
         links: [
             { name: "Bilibili", url: "https://bilibili.com", desc: "干杯" },
             { name: "YouTube", url: "https://youtube.com", desc: "视频" },
-            { name: "Twitter", url: "https://twitter.com", desc: "社交" },
-            { name: "V2EX", url: "https://v2ex.com", desc: "社区" }
+            { name: "X (原:Twitter)", url: "https://x.com", desc: "社交" },
         ]
     },
     {
