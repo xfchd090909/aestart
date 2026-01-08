@@ -1,14 +1,13 @@
 const navData = [
     {
-        areaName: "WORK 生产力专区",
+        areaName: "AE Studio站内专区",
         categories: [
             {
-                title: "代码与开发",
+                title: "资讯",
                 icon: "ri-terminal-box-line",
                 links: [
-                    { name: "GitHub", url: "https://github.com" },
-                    { name: "V2EX", url: "https://v2ex.com" },
-                    { name: "StackOverflow", url: "https://stackoverflow.com" }
+                    { name: "爱分享", url: "https://aeafx.netlify.app" },
+                    { name: "爱分享(English)", url: "https://aeafxen.netlify.app" }
                 ]
             },
             {
