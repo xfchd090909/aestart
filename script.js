@@ -125,20 +125,3 @@ function showDisclaimer() {
         if (mosaic) mosaic.remove();
     };
 }
-
-// 搜索和时钟保持不变...
-document.getElementById('search-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const query = e.target.value;
-        if (query) window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-    }
-});
-
-function updateClock() {
-    const now = new Date();
-    document.getElementById('clock').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
-}
-
-renderNav();
-setInterval(updateClock, 1000);
-updateClock();
