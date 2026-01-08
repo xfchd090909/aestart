@@ -1,18 +1,29 @@
 const navData = [
     {
-        areaName: "AE Studio 站内专区",
+        areaName: "WORK 生产力专区",
         categories: [
             {
-                title: "资讯",
+                title: "代码与开发",
                 icon: "ri-terminal-box-line",
                 links: [
-                    { name: "爱分享", url: "https://aeafx.netlify.app" },
-                    { name: "爱分享(English)", url: "https://aeafxen.netlify.app" },
+                    { name: "GitHub", url: "https://github.com" },
+                    { name: "V2EX", url: "https://v2ex.com" },
+                    { name: "StackOverflow", url: "https://stackoverflow.com" }
                 ]
             },
+            {
+                title: "日常办公",
+                icon: "ri-cup-line",
+                links: [
+                    { name: "ChatGPT", url: "https://chat.openai.com" },
+                    { name: "Notion", url: "https://notion.so" },
+                    { name: "Gmail", url: "https://gmail.com" }
+                ]
+            }
+        ]
     },
     {
-        areaName: "站外专区",
+        areaName: "LIFE 生活娱乐专区",
         categories: [
             {
                 title: "内容消费",
