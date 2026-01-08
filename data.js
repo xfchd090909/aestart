@@ -14,7 +14,8 @@ const navData = [
                 title: "最近更新",
                 icon: "ri-star-line",
                 links: [
-                    { name: "每日灵感", url: "https://aeins.netlify.app" },
+                    { name: "每日灵感", url: "https://aeins.netlify.app", desc: "获取今日灵感" },
+                    { name: "IP检查", url: "https://aeins.netlify.app", desc: "检查你的IP属地详细信息" },
                 ]
             },
         ]
@@ -36,12 +37,12 @@ const navData = [
                 icon: "ri-earth-line",
                 links: [
                     { name: "Tiktok", url: "https://tiktok.com", desc: "Make Your Day" },
-                    { name: "YouTube", url: "https://YouTube.com" },
-                    { name: "Facebook", url: "https://Facebook.com" },
-                    { name: "X", url: "https://X.com" },
-                    { name: "Instagram", url: "https://Instagram.com" },
-                    { name: "Telegram", url: "https://telegram.com" },
-                    { name: "Discord", url: "https://discord.com" }
+                    { name: "YouTube", url: "https://YouTube.com", desc: "Broadcast Yourself" },
+                    { name: "Facebook", url: "https://Facebook.com", desc: "Give people the power to build community and bring the world closer together" },
+                    { name: "X", url: "https://X.com", desc: "Blaze your glory!" },
+                    { name: "Instagram", url: "https://Instagram.com", desc: "Bringing you closer to the people and things you love" },
+                    { name: "Telegram", url: "https://telegram.com", desc: "Fast Secure Powerful Simple Private Synced" },
+                    { name: "Discord", url: "https://discord.com", desc: "	Imagine a Place" }
                 ]
             }
         ]
