@@ -12,7 +12,7 @@ const navData = [
             },
             {
                 title: "最近更新",
-                icon: "ri-star-four-line",
+                icon: "ri-star-line",
                 links: [
                     { name: "每日灵感", url: "https://aeins.netlify.app" },
                 ]
