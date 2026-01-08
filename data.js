@@ -1,42 +1,45 @@
 const navData = [
     {
-        areaName: "🚀 工作专区",
+        areaName: "WORK 生产力专区",
         categories: [
             {
-                title: "开发工具",
-                icon: "ri-code-s-slash-line",
+                title: "代码与开发",
+                icon: "ri-terminal-box-line",
                 links: [
-                    { name: "GitHub", url: "https://github.com", desc: "代码托管" },
-                    { name: "Stack Overflow", url: "https://stackoverflow.com", desc: "问题查询" }
+                    { name: "GitHub", url: "https://github.com" },
+                    { name: "V2EX", url: "https://v2ex.com" },
+                    { name: "StackOverflow", url: "https://stackoverflow.com" }
                 ]
             },
             {
-                title: "生产力",
-                icon: "ri-briefcase-line",
+                title: "日常办公",
+                icon: "ri-cup-line",
                 links: [
-                    { name: "Notion", url: "https://notion.so", desc: "笔记" },
-                    { name: "Trello", url: "https://trello.com", desc: "看板" }
+                    { name: "ChatGPT", url: "https://chat.openai.com" },
+                    { name: "Notion", url: "https://notion.so" },
+                    { name: "Gmail", url: "https://gmail.com" }
                 ]
             }
         ]
     },
     {
-        areaName: "☕ 生活专区",
+        areaName: "LIFE 生活娱乐专区",
         categories: [
             {
-                title: "休闲娱乐",
-                icon: "ri-gamepad-line",
+                title: "内容消费",
+                icon: "ri-netflix-line",
                 links: [
-                    { name: "Steam", url: "https://store.steampowered.com", desc: "游戏" },
-                    { name: "Netflix", url: "https://netflix.com", desc: "影视" }
+                    { name: "Bilibili", url: "https://bilibili.com" },
+                    { name: "YouTube", url: "https://youtube.com" },
+                    { name: "小红书", url: "https://xiaohongshu.com" }
                 ]
             },
             {
-                title: "社交媒体",
-                icon: "ri-share-forward-line",
+                title: "设计灵感",
+                icon: "ri-palette-line",
                 links: [
-                    { name: "Weibo", url: "https://weibo.com", desc: "微博" },
-                    { name: "Zhihu", url: "https://zhihu.com", desc: "知乎" }
+                    { name: "Dribbble", url: "https://dribbble.com" },
+                    { name: "Pinterest", url: "https://pinterest.com" }
                 ]
             }
         ]
