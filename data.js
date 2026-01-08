@@ -31,7 +31,15 @@ const navData = [
                     { name: "Dribbble", url: "https://dribbble.com" },
                     { name: "Pinterest", url: "https://pinterest.com" }
                 ]
-            }
+            },
+            {
+                title: "境外专区",
+                icon: "ri-earth-line",
+                links: [
+                    { name: "Tiktok", url: "https://tiktok.com" },
+                    { name: "YouTube", url: "https://YouTube.com" }
+                ]
+            },
         ]
     }
 ];
