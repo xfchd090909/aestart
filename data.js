@@ -20,7 +20,7 @@ const navData = [
                 icon: "ri-netflix-line",
                 links: [
                     { name: "Bilibili", url: "https://bilibili.com" },
-                    { name: "YouTube", url: "https://youtube.com" },
+                    { name: "抖音", url: "https://douyin.com" },
                     { name: "小红书", url: "https://xiaohongshu.com" }
                 ]
             },
