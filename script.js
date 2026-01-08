@@ -68,6 +68,8 @@ document.body.insertAdjacentHTML('beforeend', modalHTML);
 // 2. 修改渲染逻辑，传递点击事件对象 e
 function renderNav() {
     const container = document.getElementById('app');
+    container.innerHTML = ''; // 清空防止重复渲染
+
     navData.forEach(area => {
         const divider = document.createElement('div');
         divider.className = 'area-divider';
@@ -78,8 +80,12 @@ function renderNav() {
             const card = document.createElement('div');
             card.className = 'category-card';
             
+            // 按钮增加描述文字层
             let linksHTML = category.links.map(link => `
-                <a href="${link.url}" target="_blank" class="link-item">${link.name}</a>
+                <a href="${link.url}" target="_blank" class="link-item">
+                    <span class="link-name">${link.name}</span>
+                    <span class="link-desc">${link.desc || '点击访问网站'}</span>
+                </a>
             `).join('');
 
             card.innerHTML = `
@@ -91,7 +97,10 @@ function renderNav() {
                     <div class="link-list">${linksHTML}</div>
                     ${category.title === "境外专区" ? 
                     `<div id="mosaic" class="mosaic-overlay">
-                        <button class="link-item" onclick="showDisclaimerWithAnimation(event)" style="cursor:pointer; background:var(--accent); color:white; border:none; z-index:11;">显示内容</button>
+                        <button class="link-item show-btn" onclick="showDisclaimerWithAnimation(event)" style="cursor:pointer; background:var(--accent); color:white; border:none; z-index:11;">
+                            <span>显示内容</span>
+                            <span class="link-desc">查看境外专区链接</span>
+                        </button>
                     </div>` : ''}
                 </div>
             `;
@@ -100,22 +109,27 @@ function renderNav() {
     });
 }
 
-// 3. 动画显示逻辑
+// 2. 改进弹窗动画逻辑：强制坐标精确计算
 function showDisclaimerWithAnimation(e) {
     const modal = document.getElementById('disclaimer-modal');
     const content = document.getElementById('modal-content');
     const btn = document.getElementById('modal-confirm-btn');
 
-    // 计算点击按钮相对于屏幕的位置，将其设为缩放原点
-    const clickX = e.clientX;
-    const clickY = e.clientY;
-    content.style.transformOrigin = `${clickX}px ${clickY}px`;
+    // 获取点击按钮的确切中心位置
+    const rect = e.currentTarget.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
 
-    // 显示弹窗
-    modal.classList.add('show');
+    // 设置动画起始原点
+    content.style.transformOrigin = `${originX}px ${originY}px`;
+
+    // 触发显示
     modal.style.display = 'flex';
+    // 使用 requestAnimationFrame 确保 display:flex 已生效后再添加类名，触发动画
+    requestAnimationFrame(() => {
+        modal.classList.add('show');
+    });
 
-    // 倒计时逻辑
     let timeLeft = 5;
     btn.disabled = true;
     const timer = setInterval(() => {
@@ -129,15 +143,17 @@ function showDisclaimerWithAnimation(e) {
         }
     }, 1000);
 
-    // 确定按钮点击
     btn.onclick = () => {
         modal.classList.remove('show');
-        setTimeout(() => { modal.style.display = 'none'; }, 300); // 等待淡出动画
-        const mosaic = document.getElementById('mosaic');
-        if (mosaic) {
-            mosaic.style.transition = 'opacity 0.5s ease';
-            mosaic.style.opacity = '0';
-            setTimeout(() => mosaic.remove(), 500);
-        }
+        setTimeout(() => { 
+            modal.style.display = 'none';
+            // 移除遮罩
+            const mosaic = document.getElementById('mosaic');
+            if (mosaic) {
+                mosaic.style.transform = 'scale(1.2)';
+                mosaic.style.opacity = '0';
+                setTimeout(() => mosaic.remove(), 400);
+            }
+        }, 400); 
     };
 }
