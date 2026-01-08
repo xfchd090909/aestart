@@ -142,3 +142,61 @@ footer { margin: 50px 0 20px; color: #555; font-size: 0.8rem; }
     header { flex-direction: column; gap: 20px; }
     .search-box { width: 100%; }
 }
+
+/* 马赛克遮罩样式 */
+.mosaic-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px); /* 关键：磨砂马赛克效果 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    z-index: 10;
+    cursor: default;
+}
+
+.category-card { position: relative; } /* 确保遮罩定位正确 */
+
+/* 弹窗样式 */
+.modal-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none; /* 默认隐藏 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #252525;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid var(--accent);
+}
+
+.modal-title { font-size: 1.8rem; margin-bottom: 15px; color: var(--accent); text-align: center; }
+.modal-body { font-size: 0.85rem; color: var(--text-sub); line-height: 1.6; max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
+
+.modal-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-grad);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-btn:disabled { background: #444; cursor: not-allowed; }
