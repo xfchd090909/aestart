@@ -10,6 +10,13 @@ const navData = [
                     { name: "爱分享(English)", url: "https://aeafxen.netlify.app" }
                 ]
             },
+            {
+                title: "最近更新",
+                icon: "ri-star-four-line",
+                links: [
+                    { name: "每日灵感", url: "https://aeins.netlify.app" },
+                ]
+            },
         ]
     },
     {
