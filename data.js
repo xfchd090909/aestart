@@ -29,14 +29,14 @@ const navData = [
                 icon: "ri-earth-line",
                 links: [
                     { name: "Tiktok", url: "https://tiktok.com" },
-                    { name: "YouTube", url: "https://YouTube.com" }
-                    { name: "Facebook", url: "https://Facebook.com" }
-                    { name: "X", url: "https://X.com" }
-                    { name: "Instagram", url: "https://Instagram.com" }
-                    { name: "Telegram", url: "https://telegram.com" }
+                    { name: "YouTube", url: "https://YouTube.com" },
+                    { name: "Facebook", url: "https://Facebook.com" },
+                    { name: "X", url: "https://X.com" },
+                    { name: "Instagram", url: "https://Instagram.com" },
+                    { name: "Telegram", url: "https://telegram.com" },
                     { name: "Discord", url: "https://discord.com" }
                 ]
-            },
+            }
         ]
     }
 ];
