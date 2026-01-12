@@ -15,7 +15,7 @@ const navData = [
                 icon: "ri-star-line",
                 links: [
                     { name: "每日灵感", url: "https://aeins.netlify.app", desc: "获取今日灵感" },
-                    { name: "IP检查", url: "https://aeins.netlify.app", desc: "检查你的IP属地详细信息" },
+                    { name: "IP检查", url: "https://aeip.netlify.app", desc: "检查你的IP属地详细信息" },
                 ]
             },
         ]
